@@ -4,7 +4,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
-import dissertationCover from "@/assets/dissertation-cover.png.asset.json";
+import dissertationCover from "@/assets/dissertation-cover.jpg";
 
 const title =
   "From Prevalence to Prevention — PharmD Dissertation | Dr. Sai Anjuri";
@@ -135,7 +135,7 @@ function DissertationCaseStudy() {
                 <figure className="mx-auto w-full max-w-[320px] lg:mx-0">
 
                   <img
-                    src={dissertationCover.url}
+                    src={dissertationCover}
                     alt="Dissertation cover — From Prevalence to Prevention, PharmD project report"
                     loading="eager"
                     decoding="async"

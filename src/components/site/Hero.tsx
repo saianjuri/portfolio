@@ -2,9 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
-import portraitAsset from "@/assets/portrait-saianjuri.png.asset.json";
+import portraitAsset from "@/assets/portrait-saianjuri.png";
 
-const portraitUrl = portraitAsset.url;
+const portraitUrl = portraitAsset;
 
 export function Hero() {
   return (

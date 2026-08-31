@@ -4,7 +4,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
-import portraitAsset from "@/assets/portrait-saianjuri.png.asset.json";
+import portraitAsset from "@/assets/portrait-saianjuri.png";
 
 const title = "Expertise — Dr. Sai Anjuri, PharmD";
 const description =
@@ -142,7 +142,7 @@ function Expertise() {
                 <span aria-hidden="true" className="absolute -right-2 top-8 h-14 w-[5px] rounded-full bg-accent" />
                 <div className="relative overflow-hidden rounded-[1.25rem] border border-border/70 shadow-[var(--shadow-card)]">
                   <img
-                    src={portraitAsset.url}
+                    src={portraitAsset}
                     alt="Professional portrait of Dr. Sai Anjuri in a white coat"
                     loading="eager"
                     decoding="async"

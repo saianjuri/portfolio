@@ -344,23 +344,20 @@ Do not add sections that are not requested unless they genuinely improve the por
 Do not invent qualifications, awards, hospitals, certifications, patient numbers, testimonials, or professional claims.
 Use placeholders where information is not yet provided.
 
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/d54eacf0-a4f9-4fdf-945d-2a21dd4e1d60).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
 ## Development
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Requires Node.js and npm (or bun).
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
+
+Build:
+
+```sh
+npm run build
+npm run preview
+```
+
+Stack: TanStack Start (React 19) + Vite + Tailwind CSS v4.

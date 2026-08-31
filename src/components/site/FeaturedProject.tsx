@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "./Reveal";
-import dissertationCover from "@/assets/dissertation-cover.png.asset.json";
+import dissertationCover from "@/assets/dissertation-cover.jpg";
 
 const meta = [
   { label: "Programme", text: "Doctor of Pharmacy (PharmD) – Dissertation" },
@@ -24,7 +24,7 @@ export function FeaturedProject() {
         <div className="grid gap-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
           <figure className="mx-auto w-full max-w-[280px] lg:mx-0">
             <img
-              src={dissertationCover.url}
+              src={dissertationCover}
               alt="Dissertation cover — From Prevalence to Prevention, PharmD project report"
               loading="lazy"
               className="w-full rounded-sm border border-border/70 shadow-[var(--shadow-card)]"

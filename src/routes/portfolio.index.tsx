@@ -5,7 +5,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
-import dissertationCover from "@/assets/dissertation-cover.png.asset.json";
+import dissertationCover from "@/assets/dissertation-cover.jpg";
 
 const title = "Portfolio — Work, Research & Creative Pursuits | Dr. Sai Anjuri";
 const description =
@@ -176,7 +176,7 @@ function Portfolio() {
                   <figure className="mx-auto w-full max-w-[340px] lg:mx-0">
                     <div className="overflow-hidden rounded-sm border border-border/70 shadow-[var(--shadow-card)]">
                       <img
-                        src={dissertationCover.url}
+                        src={dissertationCover}
                         alt="Dissertation cover — From Prevalence to Prevention, PharmD project report"
                         loading="lazy"
                         decoding="async"

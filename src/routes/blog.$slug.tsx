@@ -5,7 +5,7 @@ import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { ArticleImage } from "@/components/site/ArticleImage";
 import { getPost, getRelated } from "@/lib/blog-data";
-import portraitAsset from "@/assets/portrait-saianjuri.png.asset.json";
+import portraitAsset from "@/assets/portrait-saianjuri.png";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -178,7 +178,7 @@ function ArticleDetail() {
             <Reveal delay={70}>
               <div className="mt-14 flex items-center gap-5 border-t border-border/70 pt-8">
                 <img
-                  src={portraitAsset.url}
+                  src={portraitAsset}
                   alt="Dr. Sai Anjuri"
                   loading="lazy"
                   decoding="async"

@@ -4,8 +4,8 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
-import portraitAsset from "@/assets/portrait-saianjuri.png.asset.json";
-import dissertationCover from "@/assets/dissertation-cover.png.asset.json";
+import portraitAsset from "@/assets/portrait-saianjuri.png";
+import dissertationCover from "@/assets/dissertation-cover.jpg";
 
 const title = "About — Dr. Sai Anjuri, PharmD";
 const description =
@@ -165,7 +165,7 @@ function About() {
                 <span aria-hidden="true" className="absolute -right-2 top-8 h-14 w-[5px] rounded-full bg-accent" />
                 <div className="relative overflow-hidden rounded-[1.25rem] border border-border/70 shadow-[var(--shadow-card)]">
                   <img
-                    src={portraitAsset.url}
+                    src={portraitAsset}
                     alt="Professional portrait of Dr. Sai Anjuri in a white coat"
                     loading="eager"
                     decoding="async"
@@ -282,7 +282,7 @@ function About() {
             <div className="grid gap-10 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-16">
               <figure className="mx-auto w-full max-w-[280px] lg:mx-0">
                 <img
-                  src={dissertationCover.url}
+                  src={dissertationCover}
                   alt="Dissertation cover — From Prevalence to Prevention, PharmD project report"
                   loading="lazy"
                   className="w-full rounded-sm border border-border/70 shadow-[var(--shadow-card)]"
