@@ -59,12 +59,24 @@ function ContactPage() {
     // Honeypot: bots fill hidden fields, real users never see this one.
     if (data.get("company")) return;
 
+    const email = String(data.get("email") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").replace(/\D/g, "");
+
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setStatus("error");
+      return;
+    }
+    if (phone && phone.length !== 10) {
+      setStatus("error");
+      return;
+    }
+
     setStatus("sending");
 
     const { error } = await supabase.from("contact_enquiries").insert({
       name: String(data.get("name") ?? "").trim(),
-      email: String(data.get("email") ?? "").trim(),
-      phone: String(data.get("phone") ?? "").trim() || null,
+      email,
+      phone: phone || null,
       reason: String(data.get("reason") ?? ""),
       message: String(data.get("message") ?? "").trim(),
     });
@@ -193,6 +205,8 @@ function ContactPage() {
                       type="email"
                       required
                       autoComplete="email"
+                      pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                      title="Enter a valid email address, e.g. name@example.com"
                       placeholder="you@example.com"
                       className={inputClasses}
                     />
@@ -206,7 +220,11 @@ function ContactPage() {
                       name="phone"
                       type="tel"
                       autoComplete="tel"
-                      placeholder="+91"
+                      inputMode="numeric"
+                      pattern="[0-9]{10}"
+                      maxLength={10}
+                      title="Enter a 10-digit mobile number"
+                      placeholder="10-digit number"
                       className={inputClasses}
                     />
                   </div>
