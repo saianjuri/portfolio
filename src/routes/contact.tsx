@@ -5,6 +5,7 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { Reveal } from "@/components/site/Reveal";
 import { Button } from "@/components/ui/button";
+import { supabase } from "@/lib/supabase";
 
 const title = "Contact & Consultation — Dr. Sai Anjuri";
 const description =
@@ -45,12 +46,37 @@ const inputClasses =
 const labelClasses =
   "mb-2 block text-[0.6875rem] font-semibold uppercase tracking-[0.14em] text-foreground/70";
 
-function ContactPage() {
-  const [sent, setSent] = useState(false);
+type Status = "idle" | "sending" | "sent" | "error";
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+function ContactPage() {
+  const [status, setStatus] = useState<Status>("idle");
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setSent(true);
+    const form = e.currentTarget;
+    const data = new FormData(form);
+
+    // Honeypot: bots fill hidden fields, real users never see this one.
+    if (data.get("company")) return;
+
+    setStatus("sending");
+
+    const { error } = await supabase.from("contact_enquiries").insert({
+      name: String(data.get("name") ?? "").trim(),
+      email: String(data.get("email") ?? "").trim(),
+      phone: String(data.get("phone") ?? "").trim() || null,
+      reason: String(data.get("reason") ?? ""),
+      message: String(data.get("message") ?? "").trim(),
+    });
+
+    if (error) {
+      console.error("Contact enquiry insert failed", error);
+      setStatus("error");
+      return;
+    }
+
+    form.reset();
+    setStatus("sent");
   }
 
   return (
@@ -214,18 +240,35 @@ function ContactPage() {
                   </div>
                 </div>
 
+                {/* Honeypot — visually hidden, ignored by users, filled by bots. */}
+                <div aria-hidden="true" className="hidden">
+                  <label htmlFor="company">Company</label>
+                  <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+                </div>
+
                 <Button
                   variant="orange"
                   size="xl"
                   type="submit"
+                  disabled={status === "sending"}
                   className="mt-7 w-full sm:w-auto"
                 >
-                  Send Enquiry <ArrowRight aria-hidden="true" />
+                  {status === "sending" ? "Sending…" : "Send Enquiry"}
+                  <ArrowRight aria-hidden="true" />
                 </Button>
 
-                {sent ? (
+                {status === "sent" ? (
                   <p className="mt-4 text-[0.875rem] font-medium text-teal-deep">
-                    Thank you — your enquiry has been noted.
+                    Thank you — your enquiry has been received.
+                  </p>
+                ) : null}
+                {status === "error" ? (
+                  <p className="mt-4 text-[0.875rem] font-medium text-accent">
+                    Something went wrong. Please try again, or email{" "}
+                    <a href="mailto:saianjuri7676@gmail.com" className="underline">
+                      saianjuri7676@gmail.com
+                    </a>{" "}
+                    directly.
                   </p>
                 ) : null}
 
